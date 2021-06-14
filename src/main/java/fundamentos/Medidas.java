@@ -8,7 +8,7 @@ public class Medidas {
 
     public static void main(String[] args){
         String opcao;
-        int area = 0; //Receber o resultado dos calculos de area
+        double area = 0; //Receber o resultado dos calculos de area
 
 
 
@@ -24,7 +24,13 @@ public class Medidas {
                 area = calcularAreaDoQuadrado();
                 break;
             case "2":
-                //ToDo: Calcular area do retangulo
+                area = calcularAreaDoRetangulo();
+                break;
+            case "3":
+                area = calcularAreaDoTriangulo();
+                break;
+            case "4":
+                area = calcularAreaDoCirculo();
                 break;
             default:
                 System.out.println("Opcao invalida: " + opcao);
@@ -44,7 +50,34 @@ public class Medidas {
         return lado * lado;
 
     }
+    public static int calcularAreaDoRetangulo(){
 
+        int base;
+        int altura;
 
+        System.out.println("Digite o tamanho da base e depois a altura do retangulo: ");
+        base = entrada.nextInt();
+        altura = entrada.nextInt();
+        return base * altura;
+    }
+    public static int calcularAreaDoTriangulo(){
 
+        int base;
+        int altura;
+
+        System.out.println("Digite o tamanho da base e depois a altura do triangulo: ");
+        base = entrada.nextInt();
+        altura = entrada.nextInt();
+        return base * altura / 2;
+    }
+    public static double calcularAreaDoCirculo(){
+
+        double pi = 3.1415;
+        int raio;
+
+        System.out.println("Digite o valor do raio; ");
+        raio = entrada.nextInt();
+        return raio * raio * pi;
+
+    }
 }
