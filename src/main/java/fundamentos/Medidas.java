@@ -1,121 +1,86 @@
+// 1 - Pacote
 package fundamentos;
 
-import java.util.Locale;
+// 2 - Bibliotecas
 import java.util.Scanner;
 
+// 3 - Classe
 public class Medidas {
-
+    // 3.1 - Atributos
     static Scanner entrada = new Scanner(System.in);
 
+    // 3.2 - Métodos e Funções
     public static void main(String[] args){
-        String opcao = " ";
-        double area = 0; //Receber o resultado dos calculos de area
+        String opcao = "1";
+        int area = 0; // receber o resultado dos cálculos de áreas
 
+        // while(!opcao.toUpperCase().equals("S")) {
 
-        while (!opcao.toUpperCase().equals("S")) {
         System.out.println("Escolha o Calculo Desejado");
-        System.out.println("(1) Area do Quadrado");
-        System.out.println("(2) Area do Retangulo");
-        System.out.println("(3) Area do Triangulo");
-        System.out.println("(4) Area do Circulo");
-        System.out.println("(5) Tabuada");
-        System.out.println("(6) Fibonacci");
-        System.out.println("(7) Contagem Regressiva");
-        System.out.println("(s) Sair");
+        System.out.println("(1) - Area do Quadrado");
+        System.out.println("(2) - Area do Retangulo");
+        System.out.println("(3) - Area do Triangulo");
+        System.out.println("(4) - Area do Circulo");
+        System.out.println("(5) - Tabuada");
+        System.out.println("(6) - Fibonacci");
+        System.out.println("(7) - Contagem Regressiva");
+        System.out.println("(8) - Divisão por Zero");
+        System.out.println("(S) - Sair");
 
-        opcao = entrada.nextLine(); //Leitura da opcao
-        switch (opcao){
+        opcao = entrada.nextLine(); // leitura da opção
+        switch (opcao) {
             case "1":
                 area = calcularAreaDoQuadrado();
                 break;
             case "2":
-                area = calcularAreaDoRetangulo();
-                break;
-            case "3":
-                area = calcularAreaDoTriangulo();
-                break;
-            case "4":
-                area = calcularAreaDoCirculo();
+                // ToDo: calcular área do retangulo
                 break;
             case "5":
                 tabuada();
                 break;
             case "6":
-                Fibonacci();
+                fibonacci();
                 break;
             case "7":
                 contagemRegressiva();
                 break;
+            case "8":
+                divisaoPorZero();
+                break;
             case "s":
+            case "S":
                 System.out.println("Agradecemos pela preferencia! Fui!!");
                 break;
             default:
-                System.out.println("Opcao invalida: " + opcao);
-
+                System.out.println("Opcao Invalida: " + opcao);
         }
-        if (area > 0){
+        if (area > 0) {
+            System.out.println("A área é de " + area + "m²");
+        }
+        //}
 
-        System.out.println("A area e de: " + area + "m²" );
-    }}}
-
+    }
 
     public static int calcularAreaDoQuadrado(){
 
-        int lado;
+        int lado; // tamanho do lado do quadrado
 
         System.out.println("Digite o tamanho do lado: ");
-        lado = entrada.nextInt(); //Leitura do tamanho do lado
+        lado = entrada.nextInt(); // leitura do tamanho do lado
 
-
-        //Desenhar o quadrado
-        for(int linha = 1; linha <= lado; linha+=2) {
-        for(int coluna = 1; coluna <= lado; coluna++ ) {
-            System.out.print("▓");
+        // Desenhar o quadrado
+        for (int linha = 1; linha <= lado; linha+=2) {
+            for (int coluna = 1; coluna <= lado; coluna++) {
+                System.out.print("#");
+            }
+            System.out.println(""); // pular de linha
         }
-            System.out.println(" ");
-        }
-        System.out.println(" ");
-
-
-        return lado * lado;
-
-    }
-    public static int calcularAreaDoRetangulo(){
-
-        int base;
-        int altura;
-
-        System.out.println("Digite o tamanho da base e depois a altura do retangulo: ");
-        base = entrada.nextInt();
-        altura = entrada.nextInt();
-        return base * altura;
-    }
-    public static int calcularAreaDoTriangulo(){
-
-        int base;
-        int altura;
-
-        System.out.println("Digite o tamanho da base e depois a altura do triangulo: ");
-        base = entrada.nextInt();
-        altura = entrada.nextInt();
-        return base * altura / 2;
-    }
-    public static double calcularAreaDoCirculo(){
-
-        double pi = 3.1415;
-        int raio;
-
-
-
-        System.out.println("Digite o valor do raio; ");
-        raio = entrada.nextInt();
-        return raio * raio * pi;
-
-
+        System.out.println(""); // pular de linha
+        return lado * lado; // retorna a área do quadrado
     }
 
     public static void tabuada(){
-        System.out.print("Voce quer calcular a tabuada de qual numero? ");
+        System.out.print("Você quer calcular a tabuada de qual numero? ");
         byte numero = entrada.nextByte();
 
         for (byte i=1;i<=10;i++){
@@ -123,14 +88,13 @@ public class Medidas {
         }
     }
 
-    public static void Fibonacci(){
-
-        System.out.println("Quantos numeros deseja calcular na sequencia? ");
+    public static void fibonacci(){
+        System.out.print("Quantos números deseja calcular na sequencia? ");
         byte numero = entrada.nextByte();
 
-        switch (numero){
+        switch(numero){
             case 0:
-                System.out.println("A sequencia esta vazia.");
+                System.out.println("A sequencia está vazia.");
                 break;
             case 1:
                 System.out.println("Sequencia de Fibonacci: 1");
@@ -145,25 +109,42 @@ public class Medidas {
                     System.out.print(fib + " ");
                     num1 = num2;
                     num2 = fib;
-
                 }
-
         }
-
     }
 
-
     public static void contagemRegressiva(){
+
         System.out.print("Começar a contagem a partir de qual numero? ");
         int numero = entrada.nextInt();
 
         System.out.print("Diminuindo de quantos em quantos numeros por vez? ");
-        int reduz = entrada.nextInt();
+        int decrescimo = entrada.nextInt();
 
-        for(int i = numero; i >= 1; i-= reduz){
-
+        for(int i = numero; i >= 1; i-= decrescimo){
             System.out.println(i);
+        }
+    }
+
+    public static void divisaoPorZero(){
+
+        try {
+            System.out.print("Qual é o dividendo? (numero a ser divido) ");
+            byte dividendo = entrada.nextByte();
+            System.out.print("Qual é o divisor? (numero que divide o dividendo) ");
+            byte divisor = entrada.nextByte();
+
+            System.out.println("O resultado é: " + dividendo / divisor);
+        }
+        catch(Exception e){
+
+            System.out.println("Mensagem Temporaria em Inglês: " + e.getMessage());
+
+        }
+        finally {
+            System.out.println("Por hoje é só pessoal!!");
         }
 
     }
+
 }
